@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
   outputDir: path.resolve(__dirname, 'doc/cocache-megadoc'),
-  resizableSidebar: false,
   sources: [
     {
       id: 'articles',
@@ -44,6 +43,7 @@ module.exports = {
     tooltipPreviews: false,
 
     resizableSidebar: false,
+    runtimeOutputPath: 'megadoc',
 
     footer: 'Made with ♥ by <a href="https://instructure.com" target="_blank">Instructure</a>.',
 
