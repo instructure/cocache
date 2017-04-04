@@ -1,0 +1,38 @@
+{
+  "name": "cocache",
+  "version": "1.0.0",
+  "description": "Collection-aware memory storage.",
+  "main": "src/Cocache.js",
+  "scripts": {
+    "test": "mocha 'src/**/*.test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instructure/cocache.git"
+  },
+  "keywords": [
+    "cache",
+    "caching",
+    "storage",
+    "record",
+    "collection",
+    "memory",
+    "in-memory",
+    "integrity"
+  ],
+  "author": "Instructure, INC.",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/instructure/cocache/issues"
+  },
+  "homepage": "https://github.com/instructure/cocache#readme",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "immutable": "3.8.1",
+    "mocha": "3.2.0",
+    "sinon": "2.1.0"
+  },
+  "peerDependencies": {
+    "immutable": "3.x"
+  }
+}

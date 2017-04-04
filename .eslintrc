@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+
+  "plugins": [],
+
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "modules": true,
+    }
+  },
+
+  "rules": {
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "no-shadow": 2,
+  },
+
+  "globals": {
+    "Promise": false
+  }
+}

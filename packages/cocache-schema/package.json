@@ -1,0 +1,40 @@
+{
+  "name": "cocache-schema",
+  "version": "1.0.0",
+  "description": "Strongly-typed schema validation for Cocache records.",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "test": "mocha 'src/**/*.test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instructure/cocache.git"
+  },
+  "keywords": [
+    "cache",
+    "caching",
+    "storage",
+    "record",
+    "collection",
+    "memory",
+    "in-memory",
+    "integrity"
+  ],
+  "author": "Instructure, INC.",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/instructure/cocache/issues"
+  },
+  "homepage": "https://github.com/instructure/cocache#readme",
+  "dependencies": {
+    "react-schema-extended": "1.x"
+  },
+  "peerDependencies": {
+    "cocache": "1.x"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
