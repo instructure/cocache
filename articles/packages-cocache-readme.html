@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Cocache is a library for caching objects in memory with special semantics for
+dealing with collections of records." />
+
+    <title>cocache
+</title>
+
+    
+    <link rel="stylesheet" href="../.megadoc/megadoc__styles.css" />
+    
+
+    
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
+  </head>
+
+  <body class="body--themed">
+    <div id="__app__"><div data-reactroot="" data-reactid="1" data-react-checksum="-953179542"><div data-reactid="2"></div><!-- react-empty: 3 --><div class="root root--with-multi-page-layout root--with-fixed-sidebar root--with-two-column-layout root--with-banner" data-reactid="4"><div class="banner-wrapper" data-reactid="5"><header class="banner" data-reactid="6"><h1 class="banner__logo" data-reactid="7"><a href="../index.html" class="" data-reactid="8">megadoc</a><!-- react-text: 9 --> <!-- /react-text --></h1><nav class="banner__navigation" data-reactid="10"><div class="banner__navigation-item" title="Quick-Jump (Ctrl+K or CMD+K)" data-reactid="11"><i class="icon icon-search" data-reactid="12"></i></div><span data-reactid="13"></span></nav></header></div><div class="root__screen" data-reactid="14"><div class="two-column-layout" data-reactid="15"><div class="two-column-layout__left" style="width:240px;" data-reactid="16"><div class="resizable-panel" data-reactid="17"><div class="resizable-panel__content" data-reactid="18"><div data-reactid="19"><div data-reactid="20"><header class="sidebar__title" data-reactid="21">Cocache</header></div><div data-reactid="22"><nav data-reactid="23"><div data-reactid="24"><div data-reactid="25"><a href="" class="class-browser__entry-link active" data-reactid="26"><!-- react-text: 27 -->cocache
+<!-- /react-text --></a><div data-reactid="28"><ul class="markdown-toc" data-reactid="29"><li class="markdown-toc__entry" data-reactid="30"><a href="#installation" class="" data-reactid="31">Installation</a></li><li class="markdown-toc__entry" data-reactid="32"><a href="#api" class="" data-reactid="33">API</a></li><li class="markdown-toc__entry" data-reactid="34"><a href="#domain-collections" class="" data-reactid="35">Domain Collections</a></li><li class="markdown-toc__entry" data-reactid="36"><a href="#object-canonicalization" class="" data-reactid="37">Object canonicalization</a></li><li class="markdown-toc__entry" data-reactid="38"><a href="#object-integrity-enforcement" class="" data-reactid="39">Object integrity enforcement</a></li><li class="markdown-toc__entry markdown-toc__entry--collapsible" data-reactid="40"><i class="icon icon-arrow-right" data-reactid="41"></i><a href="#content-change-signals" class="" data-reactid="42">Content-change signals</a><ul class="markdown-toc" data-reactid="43"><li class="markdown-toc__entry" data-reactid="44"><a href="#high-resolution-change-signals" class="" data-reactid="45">High-resolution change signals</a></li></ul></li><li class="markdown-toc__entry" data-reactid="46"><a href="#transactional-operations" class="" data-reactid="47">Transactional operations</a></li><li class="markdown-toc__entry" data-reactid="48"><a href="#record-expiry-ttl" class="" data-reactid="49">Record expiry &amp; TTL</a></li><li class="markdown-toc__entry" data-reactid="50"><a href="#license" class="" data-reactid="51">License</a></li></ul></div></div><div data-reactid="52"><a href="packages-cocache-schema-readme.html" class="class-browser__entry-link" data-reactid="53"><!-- react-text: 54 -->cocache-schema
+<!-- /react-text --></a></div></div></nav></div><div data-reactid="55"><h3 class="layout__sidebar-header" data-reactid="56">API</h3></div><div data-reactid="57"><nav class="class-browser__listing" data-reactid="58"><div class="class-browser__category" data-reactid="59"><div class="class-browser__entry" data-reactid="60"><a href="../api/Cocache.html" class="class-browser__entry-link" data-reactid="61"><!-- react-text: 62 -->Cocache<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="63"><a href="../api/CocacheSchema.html" class="class-browser__entry-link" data-reactid="64"><!-- react-text: 65 -->CocacheSchema<!-- /react-text --></a></div></div></nav></div></div></div><div class="ui-resizable-handle ui-resizable-e" data-reactid="66"></div></div></div><div class="two-column-layout__right" style="margin-left:240px;" data-reactid="67"><div data-reactid="68"><div class="doc-content" data-reactid="69"><div data-reactid="70"><div data-reactid="71"><div class="highlighted-text " data-reactid="72">
+    <h1 class="anchorable-heading">
+      <a name="cocache" class="anchorable-heading__anchor"></a>
+      <a href="#cocache" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">cocache</span>
+    </h1>
+  <p>Cocache is a library for caching objects in memory with special semantics for
+dealing with collections of records.</p>
+
+    <h2 class="anchorable-heading">
+      <a name="installation" class="anchorable-heading__anchor"></a>
+      <a href="#installation" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Installation</span>
+    </h2>
+  <p>Pull it down from npm:</p>
+<pre class="language-bash"><code>npm <span class="token function" >install</span> --save cocache</code></pre><p>You need an ES6 transpiler to use the module. Assuming you got that set-up,
+simply require <code>cocache</code> and build your hot new cache instance:</p>
+<pre class="language-javascript"><code><span class="token keyword" >const</span> Cocache <span class="token operator" >=</span> <span class="token function" >require</span><span class="token punctuation" >(</span><span class="token string" >'cocache'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token keyword" >const</span> myCache <span class="token operator" >=</span> <span class="token function" >Cocache</span><span class="token punctuation" >(</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span></code></pre>
+    <h2 class="anchorable-heading">
+      <a name="api" class="anchorable-heading__anchor"></a>
+      <a href="#api" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">API</span>
+    </h2>
+  <p>Go <a href="../api/Cocache.html" class="mega-link--internal">here</a>.</p>
+
+    <h2 class="anchorable-heading">
+      <a name="domain-collections" class="anchorable-heading__anchor"></a>
+      <a href="#domain-collections" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Domain Collections</span>
+    </h2>
+  <p>In Cocache, records may be referenced individually or through <em>domain
+collections</em> - a collection can be thought of like a database view in that it
+defines the domain in which a certain set of records are relevant.</p>
+<p>For example, in a Twitter-like application, a collection could be defined for a
+list of user objects that are following a specific user, in which case the
+collection is the list of people, the records are the user objects, and the
+domain (its <em>id</em>) is the user being followed.</p>
+<pre class="language-javascript"><code>cache<span class="token punctuation" >.</span><span class="token function" >add</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span> id<span class="token punctuation" >:</span> <span class="token string" >'1'</span><span class="token punctuation" >,</span> name<span class="token punctuation" >:</span> <span class="token string" >'Alice'</span> <span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+cache<span class="token punctuation" >.</span><span class="token function" >add</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span> id<span class="token punctuation" >:</span> <span class="token string" >'2'</span><span class="token punctuation" >,</span> name<span class="token punctuation" >:</span> <span class="token string" >'Bob'</span> <span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+cache<span class="token punctuation" >.</span><span class="token function" >addToCollection</span><span class="token punctuation" >(</span><span class="token string" >'FOLLOWERS_OF_BOB'</span><span class="token punctuation" >,</span> <span class="token punctuation" >[</span><span class="token punctuation" >{</span> id<span class="token punctuation" >:</span> <span class="token string" >'1'</span> <span class="token punctuation" >}</span><span class="token punctuation" >]</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span> <span class="token comment" spellcheck="true">// Alice</span>
+cache<span class="token punctuation" >.</span><span class="token function" >getCollection</span><span class="token punctuation" >(</span><span class="token string" >'FOLLOWERS_OF_BOB'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span> <span class="token comment" spellcheck="true">// [{ id: '1', name: 'Alice' }]</span></code></pre>
+    <h2 class="anchorable-heading">
+      <a name="object-canonicalization" class="anchorable-heading__anchor"></a>
+      <a href="#object-canonicalization" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Object canonicalization</span>
+    </h2>
+  <p>Cocache expects every individual record to be unique. When a collection is
+defined, it is managed internally as a <em>shallow</em> list; a list of <em>references</em>
+to records. Any mutative operation that produces a change in a certain record 
+will be reflected everywhere.</p>
+<p>This semantic ensures that a record, mapped to an id, is always guaranteed to 
+have the same representation - regardless of the source it was pulled from (i.e. <code>cache.get()</code> vs <code>cache.getCollection()</code>) and regardless of the 
+operation that affected it (e.g. <code>cache.add()</code>, <code>cache.addToCollection</code>, etc.).</p>
+<p>Here&#39;s a brief snippet that shows the implication of this:</p>
+<pre class="language-javascript"><code>cache<span class="token punctuation" >.</span><span class="token function" >add</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span> id<span class="token punctuation" >:</span> <span class="token string" >'1'</span> <span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+cache<span class="token punctuation" >.</span><span class="token keyword" >get</span><span class="token punctuation" >(</span><span class="token string" >'1'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token comment" spellcheck="true">// => { id: '1' }</span>
+
+cache<span class="token punctuation" >.</span><span class="token function" >addToCollection</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span> projectId<span class="token punctuation" >:</span> <span class="token string" >'1'</span> <span class="token punctuation" >}</span><span class="token punctuation" >,</span> <span class="token punctuation" >[</span><span class="token punctuation" >{</span> id<span class="token punctuation" >:</span> <span class="token string" >'1'</span><span class="token punctuation" >,</span> title<span class="token punctuation" >:</span> <span class="token string" >'foo'</span> <span class="token punctuation" >}</span><span class="token punctuation" >]</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+cache<span class="token punctuation" >.</span><span class="token keyword" >get</span><span class="token punctuation" >(</span><span class="token string" >'1'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token comment" spellcheck="true">// => { id: '1', title: 'foo' }</span>
+
+cache<span class="token punctuation" >.</span><span class="token function" >getCollection</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span> projectId<span class="token punctuation" >:</span> <span class="token string" >'1'</span> <span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token comment" spellcheck="true">// => [{ id: '1', title: 'foo' }]</span></code></pre>
+    <h2 class="anchorable-heading">
+      <a name="object-integrity-enforcement" class="anchorable-heading__anchor"></a>
+      <a href="#object-integrity-enforcement" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Object integrity enforcement</span>
+    </h2>
+  <p>It is usually a good idea to validate what goes inside a storage layer like
+Cocache. To that end, Cocache provides you with a hook to validate each record 
+that is going into the cache.</p>
+<p>So long as each record yields a unique identifier, Cocache tries to make as 
+few assumptions as possible about the shape of the data you&#39;re shoving into 
+it and delegates the responsibility of validating the structure to the 
+application layer.</p>
+<p>To define a custom validation routine, pass in a list of functions to the
+constructor under <code>recordValidators</code>.</p>
+<p>Here&#39;s an example that requires each record to contain an <code>&quot;id&quot;</code> string 
+property:</p>
+<pre class="language-javascript"><code><span class="token keyword" >const</span> Cocache <span class="token operator" >=</span> <span class="token function" >require</span><span class="token punctuation" >(</span><span class="token string" >'cocache'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token keyword" >const</span> cache <span class="token operator" >=</span> <span class="token function" >Cocache</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span>
+  recordValidators<span class="token punctuation" >:</span> <span class="token punctuation" >[</span>
+    <span class="token keyword" >function</span><span class="token punctuation" >(</span>record<span class="token punctuation" >,</span> options<span class="token punctuation" >,</span> displayName<span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+      <span class="token keyword" >if</span> <span class="token punctuation" >(</span><span class="token keyword" >typeof</span> record<span class="token punctuation" >.</span>id <span class="token operator" >!==</span> <span class="token string" >'string'</span><span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+        <span class="token keyword" >throw</span> <span class="token keyword" >new</span> <span class="token class-name" >Error</span><span class="token punctuation" >(</span><span class="token template-string" ><span class="token string" >`
+          Expected record to contain a string 'id' property.
+          Source: Cocache[</span><span class="token interpolation" ><span class="token interpolation-punctuation punctuation" >${</span>displayName<span class="token interpolation-punctuation punctuation" >}</span></span><span class="token string" >]`</span></span>
+        <span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+      <span class="token punctuation" >}</span>
+    <span class="token punctuation" >}</span>
+  <span class="token punctuation" >]</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span></code></pre><p>A more sophisticated solution could be achieved by utilizing a strong-schema
+validator module, such a React&#39;s PropTypes or <a href="https://github.com/philcockfield/react-schema" target="_blank">react-
+schema</a>. The options passed to
+the cache are also passed to your validator, utilize them!</p>
+<p>See <a href="packages-cocache-schema-readme.html" title="A react-schema based validation layer for Cocache." class="mega-link--internal">cocache-schema
+</a> for adding a React
+PropTypes-based structural validation layer to your cocaches.</p>
+
+    <h2 class="anchorable-heading">
+      <a name="content-change-signals" class="anchorable-heading__anchor"></a>
+      <a href="#content-change-signals" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Content-change signals</span>
+    </h2>
+  <p>Anytime the cache contents change, Cocache is able to emit a signal so that
+you may render a UI or re-do anything that relies on the cache contents.</p>
+<pre class="language-javascript"><code><span class="token keyword" >const</span> Cocache <span class="token operator" >=</span> <span class="token function" >require</span><span class="token punctuation" >(</span><span class="token string" >'cocache'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token keyword" >const</span> cache <span class="token operator" >=</span> <span class="token function" >Cocache</span><span class="token punctuation" >(</span><span class="token keyword" >function</span> <span class="token function" >onChange</span><span class="token punctuation" >(</span><span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+  console<span class="token punctuation" >.</span><span class="token function" >log</span><span class="token punctuation" >(</span><span class="token string" >'cache contents have changed!'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span></code></pre>
+    <h3 class="anchorable-heading">
+      <a name="high-resolution-change-signals" class="anchorable-heading__anchor"></a>
+      <a href="#high-resolution-change-signals" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">High-resolution change signals</span>
+    </h3>
+  <p>A cache instance accepts an <code>optimized: Boolean</code> option, which is on by 
+default, that allows it to perform deep equality checks between records,
+resulting in accurate change signals.</p>
+<p>These checks are done using <a href="https://facebook.github.io/immutable-js/" target="_blank">Immutable.JS</a> and work great on objects that have no custom prototypes.</p>
+<blockquote>
+<p>This may become a costly operation if the records you&#39;re storing are 
+structurally complex, in which case I&#39;d recommend to turn this off.</p>
+<p>You should also turn it off if you don&#39;t really care about noise-signal 
+ratio (e.g. the change listeners are really cheap).</p>
+</blockquote>
+
+    <h2 class="anchorable-heading">
+      <a name="transactional-operations" class="anchorable-heading__anchor"></a>
+      <a href="#transactional-operations" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Transactional operations</span>
+    </h2>
+  <p>Cocache allows you to travel back in time (heh) and restore it to a previous 
+state. This comes in handy when you want to optimistically apply the effects
+of an operation that may or may not be rejected in the future (like a Promise 
+or an API call response.)</p>
+<p>See <a href="../api/Cocache.html#api-Cocache#transaction" title="Perform a transactional routine (sync or async); failure will cause the cache to roll-back to its original state prior to running the routine." class="mega-link--internal">Cocache#transaction</a> and <a href="../api/Cocache.html#api-Cocache#rollback" title="Roll-back the cache to an earlier state. AKA, the &amp;quot;undo&amp;quot; button." class="mega-link--internal">Cocache#rollback</a> for more information.</p>
+<p>Below is an example of updating a user&#39;s name immediately and restoring it in 
+case the API refuses to update that record:</p>
+<pre class="language-javascript"><code>cache<span class="token punctuation" >.</span><span class="token function" >transaction</span><span class="token punctuation" >(</span><span class="token keyword" >function</span><span class="token punctuation" >(</span><span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+  cache<span class="token punctuation" >.</span><span class="token function" >add</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span> id<span class="token punctuation" >:</span> <span class="token string" >'1'</span><span class="token punctuation" >,</span> name<span class="token punctuation" >:</span> <span class="token string" >'Bongo'</span> <span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+  <span class="token keyword" >return</span> <span class="token function" >ajax</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span>
+    type<span class="token punctuation" >:</span> <span class="token string" >'PATCH'</span><span class="token punctuation" >,</span>
+    url<span class="token punctuation" >:</span> <span class="token string" >'/users/1'</span><span class="token punctuation" >,</span>
+    data<span class="token punctuation" >:</span> <span class="token punctuation" >{</span> name<span class="token punctuation" >:</span> <span class="token string" >'Bongo'</span> <span class="token punctuation" >}</span>
+  <span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span></code></pre><p>If the <code>Promise</code> yielded by <code>ajax</code> rejects, the cache&#39;s representation of the 
+record <code>&quot;1&quot;</code> will be restored to what it was prior to making that <code>add</code> call.</p>
+
+    <h2 class="anchorable-heading">
+      <a name="record-expiry-ttl" class="anchorable-heading__anchor"></a>
+      <a href="#record-expiry-ttl" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Record expiry &amp; TTL</span>
+    </h2>
+  <p><em>TODO: not implemented yet</em></p>
+
+    <h2 class="anchorable-heading">
+      <a name="license" class="anchorable-heading__anchor"></a>
+      <a href="#license" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">License</span>
+    </h2>
+  <p>Cocache - Collection-aware memory storage.
+Copyright (C) 2016-2017 Instructure, INC.</p>
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.</p>
+<p>You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <a href="http://www.gnu.org/licenses/" target="_blank">http://www.gnu.org/licenses/</a>.</p>
+</div><!-- react-empty: 73 --></div></div></div><div class="footer" data-reactid="74"><div class="markdown-text " data-reactid="75">Made with ♥ by <a href="https://instructure.com" target="_blank">Instructure</a>.</div></div></div></div></div></div></div></div></div>
+
+    <!-- Prepare UMD container -->
+    <script>
+      window.exports = {};
+    </script>
+
+    <!-- Megadoc core scripts -->
+    
+    <script type="text/javascript" src="../.megadoc/megadoc__config.js"></script>
+    
+    <script type="text/javascript" src="../.megadoc/megadoc__vendor.js"></script>
+    
+    <script type="text/javascript" src="../.megadoc/megadoc.js"></script>
+    
+
+    <!-- Re-export common modules into MEGADOC_PUBLIC_MODULES -->
+    <script type="text/javascript" src="../.megadoc/megadoc__common.js"></script>
+    <script>
+      window.MEGADOC_PUBLIC_MODULES = exports['megadoc__common'];
+    </script>
+
+    <!-- Collect plugin script exports -->
+    
+    <script type="text/javascript" src="../.megadoc/megadoc-plugin-markdown.js"></script>
+    
+    <script type="text/javascript" src="../.megadoc/megadoc-plugin-js.js"></script>
+    
+    <script type="text/javascript" src="../.megadoc/megadoc-theme-qt.js"></script>
+    
+
+    <!-- Load the plugins and start the client -->
+    <script>
+      window.MEGADOC_PLUGINS = Object.keys(exports)
+        .filter(function(key) {
+          var obj = exports[key];
+
+          return (
+            obj &&
+            typeof obj === 'object' &&
+            typeof obj.name === 'string' &&
+            /megadoc-(theme|plugin)-/.test(obj.name)
+          );
+        })
+        .map(function(key) {
+          return exports[key];
+        })
+      ;
+
+      exports['megadoc'].startApp(Object.assign({}, exports['megadoc__config'], {
+        startingDocumentUID: "articles/packages-cocache-readme",
+        startingDocumentHref: "/articles/packages-cocache-readme.html",
+        plugins: window.MEGADOC_PLUGINS,
+      }));
+    </script>
+  </body>
+</html>
