@@ -82,7 +82,7 @@ cache.add({ id: '2', name: 5 });
 ## License
 
 cocache-schema - Strongly-typed schema validation for Cocache records.
-Copyright (C) 2016 Instructure, INC.
+Copyright (C) 2016-2017 Instructure, INC.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
