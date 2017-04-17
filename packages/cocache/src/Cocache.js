@@ -65,26 +65,6 @@ function Cocache(maybeOptions) {
      *         whether its contents have changed.
      */
     add(record) {
-      // add({ some: 'thing' }, [{ ... }]);
-      if (arguments.length === 2 && typeof arguments[0] === 'object' && Array.isArray(arguments[1])) {
-        deprecated("add(Object, Array.<Object>)", "addToCollection(Object, Array.<Object>).");
-
-        return cache.addToCollection(arguments[0], arguments[1]);
-      }
-      // add({ some: 'thing' }, { ... });
-      else if (arguments.length === 2 && typeof arguments[0] === 'object') {
-        deprecated("add(Object, Object)", "addToCollection(Object, Array.<Object>)");
-
-        return cache.addToCollection(arguments[0], [].concat(arguments[1]));
-      }
-      // add(1, { id: 1, ... });
-      // add('1', { id: '1', ... });
-      else if (arguments.length === 2) {
-        deprecated("add(Number|String, Object)", "add(Object)");
-
-        return cache.add(arguments[1]);
-      }
-
       assertRecordIsValid(record);
 
       const id = getId(record);
@@ -173,45 +153,11 @@ function Cocache(maybeOptions) {
      * @return {Object}
      */
     get(id) {
-      // BACKWARDS-COMPATIBILITY
-      if (arguments.length === 0) {
-        deprecated("get()", "getCollection({})");
-
-        return cache.getCollection({});
-      }
-      else if (arguments.length === 1 && id === 'all') {
-        deprecated("get('all')", "getCollection({})");
-
-        return cache.getCollection({});
-      }
-      else if (arguments.length === 1 && id && typeof id === 'object') {
-        deprecated("get(Object)", "getCollection(Object)");
-
-        return cache.getCollection(id);
-      }
-
       if (records.has(id)) {
         return thawObject(records.get(id));
-      } else {
-        return undefined;
-      }
-    },
-
-    /**
-     * @deprecated
-     */
-    getAll(id) {
-      if (arguments.length === 0) {
-        deprecated("getAll()", "getCollection({})");
-        return cache.getCollection({});
-      }
-      else if (id === 'all') {
-        deprecated("getAll('all')", "getCollection({})");
-        return cache.getCollection({});
       }
       else {
-        deprecated("getAll(Object)", "getCollection(Object)");
-        return cache.getCollection(id);
+        return undefined;
       }
     },
 
@@ -251,29 +197,6 @@ function Cocache(maybeOptions) {
       });
 
       return cache.setCollection(id, recordSet.concat(cache.getCollection(id)));
-    },
-
-    /**
-     * @deprecated
-     */
-    set(id, value) {
-      // set({some:'thing'}, [{ id: '1' }])
-      if (typeof id === 'object' && Array.isArray(value)) {
-        deprecated("set(Object, Array.<Object>)", "setCollection(Object, Array.<Object>)");
-        return cache.setCollection(id, value);
-      }
-      // set({some:'thing'}, { id: '1' })
-      else if (typeof id === 'object') {
-        deprecated("set(Object, Object)", "setCollection(Object, Array.<Object>)");
-        return cache.setCollection(id, [].concat(value));
-      }
-      // set('1', { id: '1' })
-      // set(1, { id: 1 })
-      else {
-        deprecated("set(Number|String, Object)", "add(Object)");
-
-        return cache.add(value);
-      }
     },
 
     /**
@@ -353,15 +276,6 @@ function Cocache(maybeOptions) {
     },
 
     /**
-     * @deprecated
-     */
-    has(id) {
-      deprecated("has(Object)");
-
-      return collections.has(StringID(id));
-    },
-
-    /**
      * Perform a transactional routine (sync or async); failure will cause the
      * cache to roll-back to its original state prior to running the routine.
      *
@@ -410,34 +324,6 @@ function Cocache(maybeOptions) {
 
     isEmpty() {
       return records.count() === 0;
-    },
-
-    /**
-     * @deprecated
-     */
-    clearAggregate() {
-      deprecated("clearAggregate()");
-    },
-
-    /**
-     * @deprecated
-     */
-    _updateAggregates() {
-      deprecated("_updateAggregates()");
-    },
-
-    /**
-     * @deprecated
-     */
-    _updateAggregateItem() {
-      deprecated("_updateAggregateItem()");
-    },
-
-    /**
-     * @deprecated
-     */
-    _removeAggregateItem() {
-      deprecated("_removeAggregateItem()");
     },
   };
 
@@ -515,15 +401,6 @@ function devmodeInvariant(predicate, message, devMessage) {
 
 function arrayWrap(x) {
   return x === undefined ? [] : [].concat(x);
-}
-
-function deprecated(oldSignature, newSignature) {
-  if (!newSignature) {
-    console.warn(`Deprecated: \`Cache#${oldSignature}\` is no longer supported.`);
-  }
-  else {
-    console.warn(`Deprecated: \`Cache#${oldSignature}\` has changed to \`Cache#${newSignature}\`.`);
-  }
 }
 
 function tryDump(record) {
