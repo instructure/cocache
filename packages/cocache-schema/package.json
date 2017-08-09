@@ -30,11 +30,11 @@
     "react-schema": "^2.0.0"
   },
   "peerDependencies": {
-    "cocache": "^1.1.0"
+    "cocache": "^1.2.0"
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "cocache": "^1.1.0",
+    "cocache": "^1.2.0",
     "immutable": "3.8.1",
     "mocha": "2.4.5",
     "react": "15.4.2"
