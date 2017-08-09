@@ -26,13 +26,11 @@
     "url": "https://github.com/instructure/cocache/issues"
   },
   "homepage": "https://github.com/instructure/cocache#readme",
-  "dependencies": {
-    "react-schema": "^2.0.0"
-  },
   "peerDependencies": {
     "cocache": "^1.2.0"
   },
   "devDependencies": {
+    "react-schema": "^2.0.0",
     "chai": "3.5.0",
     "cocache": "^1.2.0",
     "immutable": "3.8.1",
