@@ -3,7 +3,7 @@
 const Cocache = require('cocache');
 const Subject = require('../');
 const { assert } = require('chai');
-const { shape, string } = require('react-schema-extended').PropTypes;
+const { shape, string } = require('react-schema').PropTypes;
 
 describe('cocache-schema', function() {
   let subject;
