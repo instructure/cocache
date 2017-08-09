@@ -1,6 +1,6 @@
 {
   "name": "cocache-schema",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Strongly-typed schema validation for Cocache records.",
   "main": "src/index.js",
   "scripts": {
