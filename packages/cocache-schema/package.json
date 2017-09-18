@@ -1,6 +1,6 @@
 {
   "name": "cocache-schema",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Strongly-typed schema validation for Cocache records.",
   "main": "src/index.js",
   "scripts": {
@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/instructure/cocache#readme",
   "peerDependencies": {
-    "cocache": "^1.2.0"
+    "cocache": "^1.2.2"
   },
   "devDependencies": {
     "react-schema": "^2.0.0",
     "chai": "3.5.0",
-    "cocache": "^1.2.0",
+    "cocache": "^1.2.2",
     "immutable": "3.8.1",
     "mocha": "2.4.5",
     "react": "15.4.2"
