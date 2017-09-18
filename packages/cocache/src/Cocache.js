@@ -268,7 +268,14 @@ function Cocache(maybeOptions) {
 
         return update({
           records: records.delete(id),
-          collections: collections.map((list) => list.delete(list.indexOf(id)))
+          collections: collections.map((list) => {
+            const index = list.indexOf(id);
+            if (index > 0) {
+              return list.delete(list.indexOf(id));
+            } else {
+              return list;
+            }
+          })
         });
       } else {
         return false;
