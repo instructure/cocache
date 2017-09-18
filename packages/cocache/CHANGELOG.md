@@ -1,3 +1,8 @@
+# 1.2.2
+
+- Fixed an issue with `#remove` removing an item from the back if the
+  collection had no such reference (e.g. the result of `indexOf()` is `-1`). Refs GH-3, thanks to @dckesler
+
 # 1.1.0
 
 Removed deprecated APIs:
